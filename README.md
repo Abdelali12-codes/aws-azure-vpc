@@ -114,3 +114,34 @@ kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/
 kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
 ```
+
+# vpn siste-to-set configuration
+
+## install openswan software
+
+```
+sudo su
+yum install openswan -y
+```
+
+## restart the ipsec service
+
+```
+sudo servcie ipsec restart
+
+or
+
+sudo systemctl start ipsec
+```
+
+## check teh status of the ipsec service
+
+```
+
+sudo service ipsec status
+
+or
+
+sudo systemctl status ipsec
+
+```
