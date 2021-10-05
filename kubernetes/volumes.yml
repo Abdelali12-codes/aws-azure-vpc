@@ -1,3 +1,25 @@
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: my-pvc
+# spec:
+#   storageClassName: my-strclass
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 7Gi
+# ---
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata:
+#   name: my-strclass
+# provisioner: kubernetes.io/aws-ebs
+# parameters:
+#   type: gp2
+#   # zone: us-east-1d
+#   # iopsPerGB: "10"
+# ---
 apiVersion: apps/v1
 kind: Deployment 
 metadata:
@@ -20,9 +42,16 @@ spec:
         volumeMounts:
           - mountPath: /data/db
             name: host-volume
+      
       volumes:
-      - name: host-volume
-        hostPath:
+        # - name: ebs-volume
+        #   persistentVolumeClaim:
+        #     claimName: my-pvc
+          # awsElasticBlockStore:
+          #    volumeID: vol-0add61f0ed0022fc7
+          #    fsType: ext4
+        - name: host-volume
+          hostPath:
             path: /home/ubuntu/volumes
             type: DirectoryOrCreate
                                           # this the path on the worker node where your web site resie
