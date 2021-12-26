@@ -3,6 +3,7 @@
 # setup jenkins on ubuntu ec2 instance image
 
 ```
+{
 sudo apt-get update
 sudo apt-get install openjdk-8-jdk -y
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
@@ -12,6 +13,7 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian binary/ > \
 sudo apt-get update
 sudo apt-get install jenkins
 sudo service jenkins start
+}
 ```
 
 # install the codedeploy agent
